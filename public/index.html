@@ -164,6 +164,15 @@ section{padding:4.5rem 0 1rem}
 .contact p{max-width:34rem;color:var(--ink-soft);margin:0 0 1.5rem}
 footer{border-top:1px solid var(--rule);padding:1.5rem 0 2.5rem;font-family:Archivo,sans-serif;font-size:.85rem;color:var(--ink-soft)}
 
+
+/* screenshots */
+.shots{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:.9rem;margin:1.6rem 0 .4rem}
+.shots figure{margin:0}
+.shots figure:first-child{grid-column:1 / -1}
+.shots a{display:block;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--surface)}
+.shots img{display:block;width:100%;height:auto}
+.shots figcaption{font-family:Archivo,sans-serif;font-size:.85rem;color:var(--ink-soft);margin-top:.4rem;line-height:1.4}
+@media (max-width:520px){.shots{grid-template-columns:1fr}}
 @media (max-width:900px){
   .hero{grid-template-columns:1fr;gap:2rem;padding-top:2.8rem}
   .sec-head,.case{grid-template-columns:1fr;gap:.75rem}
@@ -249,7 +258,7 @@ footer{border-top:1px solid var(--rule);padding:1.5rem 0 2.5rem;font-family:Arch
 <section id="work" aria-labelledby="work-h">
   <div class="sec-head">
     <h2 id="work-h">Work</h2>
-    <p>Three systems, each built to fix a real workflow. No patient data, credentials, or production source is published here. Demos use made-up data.</p>
+    <p>Three systems, each built to fix a real workflow. No patient data, credentials, or production source is published here. Screenshots use made-up data.</p>
   </div>
 
   <article class="case">
@@ -287,8 +296,12 @@ footer{border-top:1px solid var(--rule);padding:1.5rem 0 2.5rem;font-family:Arch
       <h4>Rollout</h4>
       <p>I led the multi-location rollout: role-based access, staff training, go-live support, and an ongoing support channel for questions and feature requests. Adoption held because it removed work instead of adding it.</p>
 
-      <div class="cta" style="margin-top:1.6rem"><a class="btn primary" href="/demo/test-tracker/">Try the demo</a></div>
-      <p class="note">The demo runs on made-up patients and staff in your browser. The production system runs on real patient data, so its source stays private. I'm happy to walk through it on a call.</p>
+      <div class="shots">
+        <figure><a href="/img/tracker-schedule.webp" target="_blank" rel="noopener"><img src="/img/tracker-schedule.webp" alt="Schedule view showing a provider-flagged priority test, missed tests with auto-cancel countdowns, and tests due tomorrow" width="1600" height="950" loading="lazy"></a><figcaption>Schedule: missed tests surface at the top with an auto-cancel countdown.</figcaption></figure>
+        <figure><a href="/img/tracker-checkin.webp" target="_blank" rel="noopener"><img src="/img/tracker-checkin.webp" alt="Check-in simulation dialog choosing a patient with an open follow-up and a visit type" width="1600" height="950" loading="lazy"></a><figcaption>Follow-up fires on check-in; protected visit types defer it.</figcaption></figure>
+        <figure><a href="/img/tracker-stats.webp" target="_blank" rel="noopener"><img src="/img/tracker-stats.webp" alt="Statistics view with completed tests by month and breakdowns by provider and evaluator" width="1600" height="950" loading="lazy"></a><figcaption>Statistics by period, provider, and evaluator.</figcaption></figure>
+      </div>
+      <p class="note">Screenshots use made-up patients and staff. The production system runs on real patient data, so it stays private. I'm happy to walk through it live on a call.</p>
     </div>
   </article>
 
@@ -312,6 +325,12 @@ footer{border-top:1px solid var(--rule);padding:1.5rem 0 2.5rem;font-family:Arch
         <li>Hosted on Supabase and Cloudflare with access limited to named users.</li>
       </ul>
       <p>I also drafted the software use agreement and HIPAA business associate agreement between developer and practice, so the paperwork matched how the system actually handles data.</p>
+      <div class="shots">
+        <figure><a href="/img/protocol-due.webp" target="_blank" rel="noopener"><img src="/img/protocol-due.webp" alt="Due soon view listing reorder dates with overdue and upcoming status, plus revenue and margin totals" width="1600" height="950" loading="lazy"></a><figcaption>Reorders driven by each product's cycle length.</figcaption></figure>
+        <figure><a href="/img/protocol-sale.webp" target="_blank" rel="noopener"><img src="/img/protocol-sale.webp" alt="Record sale dialog showing list price, the police discount tier, and the calculated total and next reorder date" width="1600" height="950" loading="lazy"></a><figcaption>Discount tier and next reorder date calculated at checkout.</figcaption></figure>
+        <figure><a href="/img/protocol-revenue.webp" target="_blank" rel="noopener"><img src="/img/protocol-revenue.webp" alt="Bar chart of revenue by month for the calendar year" width="1600" height="950" loading="lazy"></a><figcaption>Revenue by month, January to December.</figcaption></figure>
+      </div>
+      <p class="note">Screenshots are from a rebuilt version with made-up patients, products, and prices. The live system is private to the practice.</p>
     </div>
   </article>
 
