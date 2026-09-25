@@ -205,8 +205,8 @@ footer{border-top:1px solid var(--rule);padding:1.5rem 0 2.5rem;font-family:Arch
 <div class="hero">
   <div>
     <h1>I build the systems my clinic runs on.</h1>
-    <p>I'm an exercise physiologist at <strong>NJ Sports Spine and Wellness</strong>. Our patient testing workflow took four manual entries across three systems, and missed tests disappeared without anyone knowing they were still owed.</p>
-    <p>I replaced it with a clinical platform that <strong>11 providers across multiple locations</strong> now use every day. I work on the floor, so I build for the people who actually have to use it.</p>
+    <p>I'm an exercise physiologist at <strong>NJ Sports Spine and Wellness</strong>. When I started, every patient test had to be entered four separate times across three different systems. If someone missed a test, it basically disappeared, and nobody knew it was still owed.</p>
+    <p>So I built something better. The platform I made is now used every day by <strong>11 providers across multiple locations</strong>. I'm on the clinic floor myself, so I built it for the people who actually have to use it.</p>
     <div class="cta">
       <a class="btn primary" href="#work">See the work</a>
       <a class="btn" href="mailto:jshdevelopment55@gmail.com">Email me</a>
@@ -214,7 +214,7 @@ footer{border-top:1px solid var(--rule);padding:1.5rem 0 2.5rem;font-family:Arch
   </div>
 
   <figure class="figure" aria-labelledby="figcap">
-    <p class="figcap" id="figcap">The test lifecycle the platform enforces. Select a state to see its rule.</p>
+    <p class="figcap" id="figcap">This is the path every test follows in the platform. Click any step to see how it works.</p>
     <svg viewBox="0 24 640 272" role="group" aria-label="Test lifecycle: Due, Scheduled, Completed, Missed, Cancelled, Follow-up" class="draw">
       <defs>
         <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
@@ -258,7 +258,7 @@ footer{border-top:1px solid var(--rule);padding:1.5rem 0 2.5rem;font-family:Arch
 <section id="work" aria-labelledby="work-h">
   <div class="sec-head">
     <h2 id="work-h">Work</h2>
-    <p>Three systems, each built to fix a real workflow. No patient data, credentials, or production source is published here. Screenshots use made-up data.</p>
+    <p>Three projects, each one built to fix a real problem I ran into. I don't post any patient data, logins, or production code here, and every screenshot uses made-up data.</p>
   </div>
 
   <article class="case">
@@ -275,33 +275,33 @@ footer{border-top:1px solid var(--rule);padding:1.5rem 0 2.5rem;font-family:Arch
     </aside>
     <div class="body">
       <h3>Clinical test tracking platform</h3>
-      <p>Functional testing at the practice (PPT, FMS, grip, endurance) lived in three places: CareCloud for scheduling and documentation, the testing hardware for results, and a shared spreadsheet for who ordered and who performed each test. Staff entered every test four times. When a patient missed a test and didn't rebook, it slid to the bottom of the sheet and was gone.</p>
-      <p>I found the problem, quantified what it was costing the practice for leadership, wrote the build spec, and shipped the replacement.</p>
+      <p>At our practice, functional testing (PPT, FMS, grip, endurance) was spread across three places. Scheduling and notes lived in CareCloud, results lived on the testing equipment, and a shared spreadsheet tracked who ordered each test and who ran it. That meant every test got entered four times. And if a patient missed a test and never rebooked, it just slid to the bottom of the sheet and got forgotten.</p>
+      <p>I spotted the problem, showed leadership what it was costing us, wrote out a plan for the fix, and then built it.</p>
 
       <h4>What it does</h4>
       <ul>
-        <li>Tracks every test order through a defined lifecycle. A passed date with no completion flips the test to Missed automatically, with a visible countdown to auto-cancel at 30 days.</li>
-        <li>Event-driven follow-up. The re-test alert fires when the patient checks in, not on a calendar. Protected visit types like Precert and Re-eval are never interrupted; the test moves to the next visit instead.</li>
-        <li>Multi-test visits. Ordering PPT, FMS, and grip together creates three independent records, so a patient can finish one and miss another without breaking either.</li>
-        <li>Soft deletes for providers and evaluators. Retiring a staff member hides them from new entries but keeps their full history in every report.</li>
-        <li>Provider performance dashboard: arrival rates, visits per plan of care, and productivity by provider, the numbers ownership uses to judge ROI.</li>
+        <li>Every test follows a clear path from ordered to done. If the date passes and nobody marks it complete, it moves to Missed on its own and starts a 30 day countdown before it cancels.</li>
+        <li>Follow-ups pop up when the patient actually checks in, not on some random date. For visits that shouldn't be interrupted, like Precert and Re-eval, the test just moves to the next visit.</li>
+        <li>If a provider orders PPT, FMS, and grip together, each one gets its own record. That way a patient can finish one and skip another without messing up the rest.</li>
+        <li>When a staff member leaves, they're hidden from new entries, but their history stays in every report.</li>
+        <li>A provider dashboard shows arrival rates, visits per plan of care, and productivity, which are the numbers ownership looks at to decide if something is worth it.</li>
       </ul>
 
       <h4>Security and compliance</h4>
-      <p>Row-level security scopes every query to the user's site and role. Changes write to an audit trail. PDFs never persist in the browser. The platform runs under the practice's HIPAA controls, and the business associate agreement with the EHR vendor was handled separately from the technical work.</p>
+      <p>Each user only sees data for their own location and role. Every change gets logged, and PDFs never get saved in the browser. The whole thing runs under the practice's HIPAA controls, and the business associate agreement with our EHR vendor was handled separately from my side of the work.</p>
 
       <h4>EHR integration</h4>
-      <p>I ran the technical calls with CareCloud and mapped the FHIR R4 and REST endpoints the sync needs: appointments, check-in status, visit type, and next appointment. The design has since moved to a hybrid model with Salesforce as middleware. The app keeps its own tables with CareCloud identifiers, Salesforce polls CareCloud every 30 minutes, and the app calls Salesforce live for appointment data instead of duplicating it. I wrote the developer documentation the Salesforce developer is building the REST APIs from.</p>
+      <p>I led the technical calls with CareCloud and mapped out the FHIR R4 and REST data the sync would need: appointments, check-in status, visit type, and the next appointment. Since then, we've moved to a setup with Salesforce in the middle. The app keeps its own records linked to CareCloud IDs, Salesforce pulls from CareCloud every 30 minutes, and the app asks Salesforce for appointment info in real time instead of copying it. I wrote the documentation our Salesforce developer is using to build the APIs.</p>
 
       <h4>Rollout</h4>
-      <p>I led the multi-location rollout: role-based access, staff training, go-live support, and an ongoing support channel for questions and feature requests. Adoption held because it removed work instead of adding it.</p>
+      <p>I also ran the rollout across locations: setting up who can access what, training staff, being there on go-live day, and answering questions and feature requests after. People kept using it because it took work off their plate instead of adding to it.</p>
 
       <div class="shots">
-        <figure><a href="/img/tracker-schedule.webp" target="_blank" rel="noopener"><img src="/img/tracker-schedule.webp" alt="Schedule view showing a provider-flagged priority test, missed tests with auto-cancel countdowns, and tests due tomorrow" width="1600" height="950" loading="lazy"></a><figcaption>Schedule: missed tests surface at the top with an auto-cancel countdown.</figcaption></figure>
-        <figure><a href="/img/tracker-checkin.webp" target="_blank" rel="noopener"><img src="/img/tracker-checkin.webp" alt="Check-in simulation dialog choosing a patient with an open follow-up and a visit type" width="1600" height="950" loading="lazy"></a><figcaption>Follow-up fires on check-in; protected visit types defer it.</figcaption></figure>
-        <figure><a href="/img/tracker-stats.webp" target="_blank" rel="noopener"><img src="/img/tracker-stats.webp" alt="Statistics view with completed tests by month and breakdowns by provider and evaluator" width="1600" height="950" loading="lazy"></a><figcaption>Statistics by period, provider, and evaluator.</figcaption></figure>
+        <figure><a href="/img/tracker-schedule.webp" target="_blank" rel="noopener"><img src="/img/tracker-schedule.webp" alt="Schedule view showing a provider-flagged priority test, missed tests with auto-cancel countdowns, and tests due tomorrow" width="1600" height="950" loading="lazy"></a><figcaption>The schedule puts missed tests at the top with a countdown before they cancel.</figcaption></figure>
+        <figure><a href="/img/tracker-checkin.webp" target="_blank" rel="noopener"><img src="/img/tracker-checkin.webp" alt="Check-in simulation dialog choosing a patient with an open follow-up and a visit type" width="1600" height="950" loading="lazy"></a><figcaption>Follow-ups trigger when a patient checks in.</figcaption></figure>
+        <figure><a href="/img/tracker-stats.webp" target="_blank" rel="noopener"><img src="/img/tracker-stats.webp" alt="Statistics view with completed tests by month and breakdowns by provider and evaluator" width="1600" height="950" loading="lazy"></a><figcaption>Stats broken down by time period, provider, and evaluator.</figcaption></figure>
       </div>
-      <p class="note">Screenshots use made-up patients and staff. The production system runs on real patient data, so it stays private. I'm happy to walk through it live on a call.</p>
+      <p class="note">The screenshots use made-up patients and staff. The real system has actual patient data, so it stays private, but I'm happy to walk you through it on a call.</p>
     </div>
   </article>
 
@@ -317,20 +317,20 @@ footer{border-top:1px solid var(--rule);padding:1.5rem 0 2.5rem;font-family:Arch
     </aside>
     <div class="body">
       <h3>Protocol and inventory tracker</h3>
-      <p>A nurse practitioner running an independent practice was tracking patients, protocols, stock, and revenue by hand. I built her a tracker that ties all four together.</p>
+      <p>A nurse practitioner running her own practice was keeping track of patients, protocols, inventory, and revenue all by hand. I built her one tracker that handles all four.</p>
       <ul>
-        <li>Patient profiles with purchase history and discount tiers applied from pricing rules, not typed in.</li>
-        <li>Each protocol's cycle length drives the patient's reorder date and bloodwork date automatically.</li>
-        <li>Inventory that moves with every sale, and a revenue view by calendar year.</li>
-        <li>Hosted on Supabase and Cloudflare with access limited to named users.</li>
+        <li>Patient profiles with purchase history, where discounts apply automatically based on pricing rules.</li>
+        <li>Each protocol's cycle length sets the patient's next reorder date and bloodwork date on its own.</li>
+        <li>Inventory updates with every sale, and revenue shows up month by month for the whole year.</li>
+        <li>Hosted on Supabase and Cloudflare, and only approved users can get in.</li>
       </ul>
-      <p>I also drafted the software use agreement and HIPAA business associate agreement between developer and practice, so the paperwork matched how the system actually handles data.</p>
+      <p>I also drafted the software use agreement and the HIPAA business associate agreement, so the paperwork actually matched how the system handles data.</p>
       <div class="shots">
-        <figure><a href="/img/protocol-due.webp" target="_blank" rel="noopener"><img src="/img/protocol-due.webp" alt="Due soon view listing reorder dates with overdue and upcoming status, plus revenue and margin totals" width="1600" height="950" loading="lazy"></a><figcaption>Reorders driven by each product's cycle length.</figcaption></figure>
-        <figure><a href="/img/protocol-sale.webp" target="_blank" rel="noopener"><img src="/img/protocol-sale.webp" alt="Record sale dialog showing list price, the police discount tier, and the calculated total and next reorder date" width="1600" height="950" loading="lazy"></a><figcaption>Discount tier and next reorder date calculated at checkout.</figcaption></figure>
-        <figure><a href="/img/protocol-revenue.webp" target="_blank" rel="noopener"><img src="/img/protocol-revenue.webp" alt="Bar chart of revenue by month for the calendar year" width="1600" height="950" loading="lazy"></a><figcaption>Revenue by month, January to December.</figcaption></figure>
+        <figure><a href="/img/protocol-due.webp" target="_blank" rel="noopener"><img src="/img/protocol-due.webp" alt="Due soon view listing reorder dates with overdue and upcoming status, plus revenue and margin totals" width="1600" height="950" loading="lazy"></a><figcaption>Reorder dates based on each product's cycle.</figcaption></figure>
+        <figure><a href="/img/protocol-sale.webp" target="_blank" rel="noopener"><img src="/img/protocol-sale.webp" alt="Record sale dialog showing list price, the police discount tier, and the calculated total and next reorder date" width="1600" height="950" loading="lazy"></a><figcaption>Discounts and the next reorder date calculated at checkout.</figcaption></figure>
+        <figure><a href="/img/protocol-revenue.webp" target="_blank" rel="noopener"><img src="/img/protocol-revenue.webp" alt="Bar chart of revenue by month for the calendar year" width="1600" height="950" loading="lazy"></a><figcaption>Monthly revenue for the year.</figcaption></figure>
       </div>
-      <p class="note">Screenshots are from a rebuilt version with made-up patients, products, and prices. The live system is private to the practice.</p>
+      <p class="note">These screenshots come from a rebuilt version with made-up patients, products, and prices. The real one is private to the practice.</p>
     </div>
   </article>
 
@@ -345,12 +345,12 @@ footer{border-top:1px solid var(--rule);padding:1.5rem 0 2.5rem;font-family:Arch
     </aside>
     <div class="body">
       <h3>Physical capacity testing engine</h3>
-      <p>Different testers running the same assessment get different numbers when the protocol lives in their heads. This engine puts aerobic capacity, maximal strength, and mobility testing under one standardized set of parameters, so any trained tester produces comparable results.</p>
-      <p>It connects to an intake form and admin console I built, so a client moves from intake to baseline testing to retest without anyone re-entering data. Same principle as the clinical platform: one entry, one source of truth.</p>
+      <p>When the testing protocol only lives in someone's head, two people can run the same test and get different results. This engine puts aerobic capacity, strength, and mobility testing under one standard set of rules, so any trained tester gets results you can actually compare.</p>
+      <p>It connects to an intake form and admin console I also built, so a client goes from intake to their first test to retesting without anyone typing the same info twice. It's the same idea as the clinical platform: enter it once and keep it in one place.</p>
       <div class="shots">
-        <figure><a href="/img/capacity-aerobic.webp" target="_blank" rel="noopener"><img src="/img/capacity-aerobic.webp" alt="Aerobic result showing estimated VO2max of 49.2 with percentile, error range, METs, and change from baseline" width="1600" height="1000" loading="lazy"></a><figcaption>Aerobic result with percentile, error range, and change from baseline.</figcaption></figure>
-        <figure><a href="/img/capacity-history.webp" target="_blank" rel="noopener"><img src="/img/capacity-history.webp" alt="History chart of VO2max across three tests against the age and sex average, with a table of lifts" width="1600" height="1000" loading="lazy"></a><figcaption>Progress over time against the age and sex average.</figcaption></figure>
-        <figure><a href="/img/capacity-mobility.webp" target="_blank" rel="noopener"><img src="/img/capacity-mobility.webp" alt="Functional Movement Screen result with composite score and side to side asymmetries flagged" width="1600" height="1000" loading="lazy"></a><figcaption>Movement screen with asymmetries flagged.</figcaption></figure>
+        <figure><a href="/img/capacity-aerobic.webp" target="_blank" rel="noopener"><img src="/img/capacity-aerobic.webp" alt="Aerobic result showing estimated VO2max of 49.2 with percentile, error range, METs, and change from baseline" width="1600" height="1000" loading="lazy"></a><figcaption>Aerobic results with percentile, margin of error, and progress since the first test.</figcaption></figure>
+        <figure><a href="/img/capacity-history.webp" target="_blank" rel="noopener"><img src="/img/capacity-history.webp" alt="History chart of VO2max across three tests against the age and sex average, with a table of lifts" width="1600" height="1000" loading="lazy"></a><figcaption>Progress over time compared to the average for their age and sex.</figcaption></figure>
+        <figure><a href="/img/capacity-mobility.webp" target="_blank" rel="noopener"><img src="/img/capacity-mobility.webp" alt="Functional Movement Screen result with composite score and side to side asymmetries flagged" width="1600" height="1000" loading="lazy"></a><figcaption>Movement screen with left and right differences flagged.</figcaption></figure>
       </div>
       <p class="note">Screenshots use a made-up client.</p>
     </div>
@@ -360,17 +360,17 @@ footer{border-top:1px solid var(--rule);padding:1.5rem 0 2.5rem;font-family:Arch
 <section id="approach" aria-labelledby="approach-h">
   <div class="sec-head">
     <h2 id="approach-h">Approach</h2>
-    <p>Don't replace the EHR. Demote it. CareCloud is good at eligibility, claims, and the legal chart. It is bad at the testing workflow. So staff work in the tracker, and the EHR becomes a background service the sync talks to on their behalf.</p>
+    <p>My take: you don't replace the EHR, you work around it. CareCloud is great at insurance, billing, and the official chart. It just isn't built for our testing workflow. So staff work in the tracker, and the EHR runs in the background while the sync talks to it for them.</p>
   </div>
   <div class="case" style="border-top:0;padding-top:0">
     <div></div>
     <div class="body">
-      <p>Each phase stands on its own. Stopping after any one of them still leaves the practice better off, which is how you get a non-technical owner to approve the next one.</p>
+      <p>Each phase works on its own. Even if we stopped after any one of them, the practice would still be better off, which makes it a lot easier to get the owners to say yes to the next one.</p>
       <ol class="phases">
-        <li class="now">Read-only sync. The schedule fills itself and missed tests get caught.</li>
-        <li>Write-back. Tests are scheduled and completed in one place and filed to the chart automatically.</li>
-        <li>Device ingestion. Results from the testing hardware land in the tracker without retyping.</li>
-        <li>Exercise plans generated from the patient's own test results, tracked as data instead of documents.</li>
+        <li class="now">Read-only sync. The schedule fills itself in and missed tests get caught.</li>
+        <li>Write-back. Tests get scheduled and completed in one place, then filed to the chart automatically.</li>
+        <li>Device data. Results from the testing equipment go straight into the tracker, no retyping.</li>
+        <li>Exercise plans built from each patient's own test results and tracked as data instead of paper.</li>
       </ol>
     </div>
   </div>
@@ -379,14 +379,14 @@ footer{border-top:1px solid var(--rule);padding:1.5rem 0 2.5rem;font-family:Arch
 <section id="background" aria-labelledby="bg-h">
   <div class="sec-head">
     <h2 id="bg-h">Background</h2>
-    <p>I didn't set out to build software. I set out to work with patients.</p>
+    <p>I never planned on building software. I just wanted to work with patients.</p>
   </div>
   <div class="case story" style="border-top:0;padding-top:0">
     <div></div>
     <div class="body">
-      <p>I played four years as a starting wide receiver at Montclair State. When football ended, I went into exercise physiology because I wanted a patient facing role, and that's still where I spend my day.</p>
-      <p>On the floor I kept running into the same breaks. A test got entered in the EHR, run on the testing hardware, logged in a spreadsheet, then entered in the EHR again. A missed test fell off the list and nobody knew it was still owed. The work got done, but it took four steps to get one result.</p>
-      <p>Football taught me to strip a play down to what actually moves the ball. I looked at our workflow the same way: what result do we need, and what's the shortest path to it? The answer was a technical one, so I built it. I still treat patients every day. Now I also build the tools that make that work run clean.</p>
+      <p>I played four years as a starting wide receiver at Montclair State. After football, I went into exercise physiology because I wanted to work directly with patients, and that's still what I do every day.</p>
+      <p>Working on the floor, I kept running into the same problems. A test would get entered in the EHR, run on the testing equipment, written into a spreadsheet, and then entered in the EHR all over again. If a patient missed a test, it fell off the list and nobody knew it was still owed. Everything eventually got done, but it took four steps to get one result.</p>
+      <p>Football taught me to break a play down to what actually moves the ball. I looked at our workflow the same way: what result do we need, and what's the fastest way to get there? The answer turned out to be a technical one, so I built it. I still work with patients every day, but now I also build the tools that make that work easier.</p>
     </div>
   </div>
   <div class="bg-grid">
@@ -420,7 +420,7 @@ footer{border-top:1px solid var(--rule);padding:1.5rem 0 2.5rem;font-family:Arch
 
 <section class="contact" id="contact" aria-labelledby="contact-h">
   <h2 id="contact-h">Let's talk.</h2>
-  <p>I'm looking for clinical systems, implementation, and health tech operations roles. Based in Somerset, New Jersey. Open to relocation and travel.</p>
+  <p>I'm looking for roles in clinical systems, implementation, and health tech operations. I'm based in Somerset, New Jersey, and I'm open to relocating and traveling.</p>
   <div class="cta">
     <a class="btn primary" href="mailto:jshdevelopment55@gmail.com">jshdevelopment55@gmail.com</a>
     <a class="btn" href="https://www.linkedin.com/in/jamie-hamilton-800163276/" rel="noopener">LinkedIn</a>
@@ -434,12 +434,12 @@ footer{border-top:1px solid var(--rule);padding:1.5rem 0 2.5rem;font-family:Arch
 <script>
 (function(){
   var rules={
-    due:["Due","A provider ordered the test and it has no date yet. It sits in Awaiting scheduling until someone books it."],
-    scheduled:["Scheduled","Booked for a date. If that date passes without a completion, the system moves it to Missed on its own."],
-    completed:["Completed","Evaluator and timestamp are recorded. A re-test target is set 30 business days out, weekends excluded."],
-    missed:["Missed","Goes straight to Urgent action with a countdown. Rescheduling or completing it clears the flag."],
-    cancelled:["Cancelled","After 30 days missed, it cancels automatically. Nothing is deleted. It stays in the history and the reports."],
-    followup:["Follow-up","Fires when the patient checks in, not on a calendar. Precert and Re-eval visits are protected, so the test moves to the next visit instead."]
+    due:["Due","A provider ordered the test, but it doesn't have a date yet. It waits in Awaiting scheduling until someone books it."],
+    scheduled:["Scheduled","It's booked. If the date passes and nobody marks it complete, it moves to Missed on its own."],
+    completed:["Completed","The system saves who ran it and when. A retest gets set for 30 business days later, not counting weekends."],
+    missed:["Missed","It jumps to the top as urgent with a countdown. Rescheduling it or marking it complete clears it."],
+    cancelled:["Cancelled","If it stays missed for 30 days, it cancels automatically. Nothing gets deleted, so it still shows up in the history and reports."],
+    followup:["Follow-up","This pops up when the patient checks in, not on a set date. Precert and Re-eval visits don't get interrupted, so the test just moves to their next visit."]
   };
   var nodes=document.querySelectorAll(".node");
   var edges=document.querySelectorAll(".edge");
